@@ -2,7 +2,7 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header>
-      <div className="container items-center flex justify-between py-4 px-6 mx-auto">
+      <div className=" items-center flex justify-between  mx-auto">
         <Link href="/" className="font-bold text-red-600 text-xl">
           Web3 Jobs
         </Link>
