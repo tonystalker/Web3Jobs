@@ -33,6 +33,9 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <footer className="container py-16 text-gray-500">
+          Web3 Jobs &copy; All rights reserved
+        </footer>
       </body>
     </html>
   );
