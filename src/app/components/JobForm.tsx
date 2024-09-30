@@ -57,9 +57,15 @@ export default function JobForm() {
             <div>
               <h3>Contact Person</h3>
               <div className="flex gap-4">
-                <div className="bg-gray-200 p-2 rounded-lg">
-                  <FontAwesomeIcon icon={faUser} className="text-gray-400" />
+                <div>
+                  <div className="bg-gray-200 size-24 inline-flex items-center justify-center">
+                    <FontAwesomeIcon icon={faUser} className="text-gray-400" />
+                  </div>
+                  <div className="mt-2">
+                    <Button>Select File</Button>
+                  </div>
                 </div>
+
                 <div className="flex flex-col gap-2 w-full">
                   <TextField.Root placeholder="Tony Stalker" className="w-full">
                     <TextField.Slot>
