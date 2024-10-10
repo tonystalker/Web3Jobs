@@ -22,6 +22,7 @@ import {
   faVoicemail,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faFile } from "@fortawesome/free-regular-svg-icons";
+import ImageUpload from "./ImageUpload";
 
 export default function JobForm() {
   const [countryId, setCountryId] = useState(null);
@@ -34,42 +35,33 @@ export default function JobForm() {
           Post a New Job
         </h2>
 
-        <form action="" className="flex flex-col gap-6">
+        <form className="flex flex-col gap-6" method="POST">
           {/* Job Title */}
           <div>
             <TextField.Root
               placeholder="Job Title"
               className="border border-gray-300 w-full py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-            ></TextField.Root>
+            />
           </div>
 
           {/* Icon and Contact Person Section */}
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             <div>
               <h3>Job Icon</h3>
-              <div className="bg-gray-200 size-24 inline-flex items-center justify-center">
-                <FontAwesomeIcon icon={faFile} className="text-gray-400" />
-              </div>
-              <div className="mt-2">
-                <Button>Select File</Button>
-              </div>
+              <ImageUpload icon={faFile} />
             </div>
             <div>
+              {" "}
               <h3>Contact Person</h3>
-              <div className="flex gap-4">
-                <div>
-                  <div className="bg-gray-200 size-24 inline-flex items-center justify-center">
-                    <FontAwesomeIcon icon={faUser} className="text-gray-400" />
-                  </div>
-                  <div className="mt-2">
-                    <Button>Select File</Button>
-                  </div>
+              <div className="flex flex-row gap-4">
+                <div className="flex gap-4">
+                  <ImageUpload icon={faUser} />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
                   <TextField.Root placeholder="Tony Stalker" className="w-full">
                     <TextField.Slot>
-                      <FontAwesomeIcon icon={faUser}> </FontAwesomeIcon>
+                      <FontAwesomeIcon icon={faUser} />
                     </TextField.Slot>
                   </TextField.Root>
                   <TextField.Root
@@ -176,7 +168,7 @@ export default function JobForm() {
               <TextField.Root
                 placeholder="Amount"
                 className="border border-gray-300 w-full py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              ></TextField.Root>
+              />
               <span className="text-gray-600">$k/year</span>
             </div>
           </div>
@@ -223,12 +215,9 @@ export default function JobForm() {
 
           {/* Submit Button */}
           <div className="flex justify-end">
-            <button
-              type="submit"
-              className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
+            <Button className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
               Save
-            </button>
+            </Button>
           </div>
         </form>
       </div>
