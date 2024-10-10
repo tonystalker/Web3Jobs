@@ -3,10 +3,18 @@ import { faUser, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@radix-ui/themes";
 import { useRef } from "react";
+import axios from "axios";
+
 const ImageUpload = ({ icon }: { icon: IconDefinition }) => {
   const fileInRef = useRef<HTMLInputElement>(null);
-  function upload(ev: Event) {
-    const input = ev.target;
+  async function upload(ev: Event) {
+    const input = ev.target as HTMLInputElement;
+    if (input && input.files) {
+      const files = input.files[0];
+      const data = new FormData();
+      data.set("file", files);
+      const response = await axios.post("/api/upload", data);
+    }
   }
   return (
     <div>
