@@ -27,6 +27,7 @@ import ImageUpload from "./ImageUpload";
 export default function JobForm() {
   const [countryId, setCountryId] = useState(null);
   const [stateId, setStateId] = useState(null);
+  const [cityId, setCityId] = useState(null);
 
   return (
     <Theme>
@@ -39,6 +40,7 @@ export default function JobForm() {
           {/* Job Title */}
           <div>
             <TextField.Root
+              name="title"
               placeholder="Job Title"
               className="border border-gray-300 w-full py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
             />
@@ -48,24 +50,29 @@ export default function JobForm() {
           <div className="grid grid-cols-2 gap-6">
             <div>
               <h3>Job Icon</h3>
-              <ImageUpload icon={faFile} />
+              <ImageUpload name="jobIcon" icon={faFile} />
             </div>
             <div>
               {" "}
               <h3>Contact Person</h3>
               <div className="flex flex-row gap-4">
                 <div className="flex gap-4">
-                  <ImageUpload icon={faUser} />
+                  <ImageUpload name="personPhoto" icon={faUser} />
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
-                  <TextField.Root placeholder="Tony Stalker" className="w-full">
+                  <TextField.Root
+                    placeholder="Tony Stalker"
+                    name="name"
+                    className="w-full"
+                  >
                     <TextField.Slot>
                       <FontAwesomeIcon icon={faUser} />
                     </TextField.Slot>
                   </TextField.Root>
                   <TextField.Root
                     placeholder="Phone"
+                    name="phone"
                     className="w-full"
                     type="tel"
                   >
@@ -76,6 +83,7 @@ export default function JobForm() {
                   <TextField.Root
                     placeholder="TonyStalker@gmail.com"
                     className="w-full"
+                    name="email"
                     type="email"
                   >
                     <TextField.Slot>
@@ -93,7 +101,7 @@ export default function JobForm() {
               <label className="text-gray-700 font-medium">Remote?</label>
               <RadioGroup.Root
                 defaultValue="hybrid"
-                name="remote-options"
+                name="remote"
                 className="flex gap-4"
               >
                 <RadioGroup.Item
@@ -131,7 +139,7 @@ export default function JobForm() {
               </label>
               <RadioGroup.Root
                 defaultValue="full"
-                name="employment-type"
+                name="type"
                 className="flex gap-4"
               >
                 <RadioGroup.Item
@@ -166,6 +174,7 @@ export default function JobForm() {
             <div className="flex items-center gap-4">
               <label className="text-gray-700 font-medium">Salary</label>
               <TextField.Root
+                name="salary"
                 placeholder="Amount"
                 className="border border-gray-300 w-full py-2 px-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -178,7 +187,7 @@ export default function JobForm() {
             <div>
               <label className="text-gray-700 font-medium">Country</label>
               <CountrySelect
-                onChange={(e) => setCountryId(e.id)}
+                onChange={(e: any) => setCountryId(e.id)}
                 className="w-full"
                 placeHolder="Select Country"
               />
@@ -187,8 +196,8 @@ export default function JobForm() {
             <div>
               <label className="text-gray-700 font-medium">State</label>
               <StateSelect
-                countryId={countryId}
-                onChange={(e) => setStateId(e.id)}
+                countryid={countryId}
+                onChange={(e: any) => setStateId(e.id)}
                 className="w-full"
                 placeHolder="Select State"
               />
@@ -197,9 +206,9 @@ export default function JobForm() {
             <div>
               <label className="text-gray-700 font-medium">City</label>
               <CitySelect
-                countryId={countryId}
-                stateId={stateId}
-                onChange={(e) => console.log(e)}
+                stateid={stateId}
+                countryid={countryId}
+                onChange={(e: any) => setCityId(e.id)}
                 className="w-full"
                 placeHolder="Select City"
               />
@@ -210,6 +219,7 @@ export default function JobForm() {
           <TextArea
             placeholder="Job Description"
             resize={"vertical"}
+            name="description"
             className="border border-gray-300 w-full py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
           />
 
