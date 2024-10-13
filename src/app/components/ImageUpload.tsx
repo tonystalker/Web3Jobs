@@ -43,8 +43,8 @@ export default function ImageUpload({
   const imgLoading = isUploading || isImageLoading;
 
   return (
-    <>
-      <div className="bg-gray-100 rounded-md size-24 inline-flex items-center content-center justify-center">
+    <div className="flex flex-col items-center gap-4">
+      <div className="relative w-24 h-24 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center border border-gray-300 shadow-md">
         {imgLoading && (
           <FontAwesomeIcon
             icon={faSpinner}
@@ -58,29 +58,27 @@ export default function ImageUpload({
             width={1024}
             height={1024}
             onLoadingComplete={() => setIsImageLoading(false)}
-            className="w-auto h-auto max-w-24 max-h-24"
+            className="w-full h-full object-cover"
           />
         )}
         {!imgLoading && !url && (
-          <FontAwesomeIcon icon={icon} className="text-gray-400" />
+          <FontAwesomeIcon icon={icon} className="text-gray-400 text-2xl" />
         )}
       </div>
       <input type="hidden" value={url} name={name} />
-      <div className="mt-2">
-        <input
-          onChange={(ev) => upload(ev)}
-          ref={fileInRef}
-          type="file"
-          className="hidden"
-        />
-        <Button
-          type="button"
-          onClick={() => fileInRef.current?.click()}
-          variant="soft"
-        >
-          select file
-        </Button>
-      </div>
-    </>
+      <input
+        onChange={(ev) => upload(ev)}
+        ref={fileInRef}
+        type="file"
+        className="hidden"
+      />
+      <Button
+        type="button"
+        onClick={() => fileInRef.current?.click()}
+        className="px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600 transition duration-200"
+      >
+        Select File
+      </Button>
+    </div>
   );
 }
