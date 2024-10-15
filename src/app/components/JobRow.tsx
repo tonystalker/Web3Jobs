@@ -5,6 +5,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function JobRow({ jobDoc }: { jobDoc: Job }) {
   return (
@@ -15,11 +16,15 @@ export default function JobRow({ jobDoc }: { jobDoc: Job }) {
       <div className="flex gap-6">
         {/* Job Icon */}
         <div className="flex items-center w-16 h-16 rounded-full bg-gray-100 overflow-hidden shadow-inner">
-          <img
-            className="object-cover w-full h-full"
-            src={jobDoc?.jobIcon || "/placeholder-icon.png"}
-            alt={`${jobDoc.title} icon`}
-          />
+          <div className="relative w-full h-full">
+            <Image
+              className="object-cover"
+              src={jobDoc?.jobIcon || "/placeholder-icon.png"}
+              alt={`${jobDoc?.title || "Job"} icon`}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         </div>
 
         {/* Job Details */}
