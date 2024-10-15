@@ -1,5 +1,5 @@
 import Link from "next/link";
-import async from "../page";
+
 import { getSignInUrl, getUser, signOut } from "@workos-inc/authkit-nextjs";
 
 const Header = async () => {

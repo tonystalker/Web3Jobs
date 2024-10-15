@@ -2,7 +2,6 @@ import Jobs from "@/app/components/Jobs";
 import { addOrgAndUserData, JobModel } from "@/models/Job";
 import { getUser } from "@workos-inc/authkit-nextjs";
 import { WorkOS } from "@workos-inc/node";
-import mongoose from "mongoose";
 
 type PageProps = {
   params: {

@@ -18,13 +18,7 @@ import "react-country-state-city/dist/react-country-state-city.css";
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMobile,
-  faPhone,
-  faUser,
-  faVoicemail,
-  faBriefcase,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faFile } from "@fortawesome/free-regular-svg-icons";
 import ImageUpload from "./ImageUpload";
 
@@ -41,6 +35,7 @@ export default function JobForm({
   const [countryName, setCountryName] = useState(jobDoc?.country || "");
   const [stateName, setStateName] = useState(jobDoc?.state || "");
   const [cityName, setCityName] = useState(jobDoc?.city || "");
+
   async function handleSaveJob(data: FormData) {
     data.set("country", countryName.toString());
     data.set("state", stateName.toString());
