@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import "@radix-ui/themes/styles.css";
 import { saveJobAction } from "../actions/JobActions";
 import type { Job } from "@/models/Job";

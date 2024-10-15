@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   // blob data of our file
   const chunks = [];
-  // @ts-ignore
+  // @ts-expect-error
   for await (const chunk of file.stream()) {
     chunks.push(chunk);
   }
