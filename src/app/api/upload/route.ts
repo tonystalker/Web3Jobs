@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   // blob data of our file
   const chunks = [];
-  // @ts-expect-error
+  // @ts-expect-error: This function is expected to throw an error when certain conditions are met
   for await (const chunk of file.stream()) {
     chunks.push(chunk);
   }
