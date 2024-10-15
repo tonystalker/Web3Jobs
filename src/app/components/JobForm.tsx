@@ -15,8 +15,8 @@ import {
   StateSelect,
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
-import { useState } from "react";
-import { redirect } from "next/navigation";
+import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faFile } from "@fortawesome/free-regular-svg-icons";
@@ -35,17 +35,22 @@ export default function JobForm({
   const [countryName, setCountryName] = useState(jobDoc?.country || "");
   const [stateName, setStateName] = useState(jobDoc?.state || "");
   const [cityName, setCityName] = useState(jobDoc?.city || "");
+  const router = useRouter();
 
-  async function handleSaveJob(data: FormData) {
-    data.set("country", countryName.toString());
-    data.set("state", stateName.toString());
-    data.set("city", cityName.toString());
-    data.set("countryId", countryId.toString());
-    data.set("stateId", stateId.toString());
-    data.set("cityId", cityId.toString());
-    data.set("orgId", orgId);
-    const jobDoc = await saveJobAction(data);
-    redirect(`/jobs/${jobDoc.orgId}`);
+  async function handleSaveJob(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    formData.set("country", countryName.toString());
+    formData.set("state", stateName.toString());
+    formData.set("city", cityName.toString());
+    formData.set("countryId", countryId.toString());
+    formData.set("stateId", stateId.toString());
+    formData.set("cityId", cityId.toString());
+    formData.set("orgId", orgId);
+
+    const jobDoc = await saveJobAction(formData);
+    router.push(`/jobs/${jobDoc.orgId}`);
   }
 
   return (
@@ -55,7 +60,7 @@ export default function JobForm({
           Post a New Job
         </h2>
 
-        <form className="flex flex-col gap-6" action={handleSaveJob}>
+        <form className="flex flex-col gap-6" onSubmit={handleSaveJob}>
           {/* Job Title */}
           {jobDoc && <input type="hidden" name="id" value={jobDoc?._id} />}
           <div>
@@ -269,7 +274,10 @@ export default function JobForm({
 
           {/* Submit Button */}
           <div className="flex justify-end">
-            <Button className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <Button
+              type="submit"
+              className="bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
               Save
             </Button>
           </div>
