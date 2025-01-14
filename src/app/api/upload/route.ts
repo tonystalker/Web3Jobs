@@ -14,7 +14,6 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  //name 345234523-test.jpg
   const newFilename = `${uniqid()}-${file.name}`;
 
   // blob data of our file
